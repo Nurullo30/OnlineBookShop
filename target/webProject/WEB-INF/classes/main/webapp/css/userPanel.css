@@ -1,0 +1,81 @@
+body {
+    background-color:    #dedede !important;
+}
+
+#main-block{
+    margin: 0 5%;
+}
+#left-block{
+    float: left;
+}
+#middle-block{
+    width: 70%;
+    float:left;
+}
+
+
+
+ #menu-table{
+     width: 400px;
+     border:1px solid black;
+
+ }
+
+ #myProfile-table{
+     width: 400px;
+     border:1px solid black;
+     margin:0 auto;
+ }
+
+ #myProfile-table td{
+     border:1px solid black;
+     padding:10px;
+     width: 150px;
+ }
+
+ #booklist-table{
+     background-color: #F0F8FF;
+     font-family: Arial, Helvetica, sans-serif;
+ }
+
+ #booklist-table td{
+     text-align: center;
+     width: 100px;
+     border:1px solid black;
+     padding:5px;
+ }
+#pagination-table{
+
+}
+
+ #filterBy-table{
+     width: 200px;
+     border:0px;
+     background-color: #ffffff;
+     font-family: Arial, Helvetica, sans-serif;
+ }
+
+ #filterBy-table td{
+     margin: 0px;
+     padding: 10px;
+     border: 1px solid black;
+     text-align: center;
+ }
+
+
+#basket-table{
+    width: 400px;
+    background-color: white;
+}
+#basket-table td{
+
+   border: 1px solid black;
+    text-align: center;
+}
+
+#checkout-form{
+    width: 500px;
+    margin: 50px auto;
+    background-color: #d7dee5!important;
+    padding: 30px;
+}

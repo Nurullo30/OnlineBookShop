@@ -1,0 +1,44 @@
+BOOKSTORE
+
+Date
+2 weeks
+
+Rules | Регламенты
+1. In 3 languages : Eng, Ru , Uz
+2.
+
+User Interface
+    1. Use 3 colors : Blue, white , Black
+    2. Font type: Times new Roman
+    3. Margin from left and right corners: 20px
+
+
+Backend
+    AdminSide
+            1. Add book -                       done
+            2. Add price to book                done
+            3. See most sold books              done
+            4. See most book that weren't sold
+            5. Remove Book                      done
+            6. Change book details              done
+            7. There is a bookshelf and each shelf has it's own
+
+            7. Add discount for books // edsUser will see the list of the books, use will choose an id and add a discount in percent
+            8. See ratings and comments for books
+            9. Add news
+     UserSide:
+              1. Buy
+              2. Return
+              3. Sort by category
+              4. Sort by price
+              5. Rate book by five stars *****
+              6. See new added books
+              7. See discounted books
+              8. Add comments for books
+              9. New Orders
+              10. Bought books
+              11. Currency change
+              12. See news
+     ServerSide:
+        Login page verification
+        ForgetPassword

@@ -1,0 +1,6 @@
+loadBook:src/com/company/DataBase/BookStore.txt
+balance:../src/com/company/DataBase/BookStoreBalance.txt
+customer:src/com/company/DataBase/Customers.txt
+discount:src/com/company/DataBase/DiscountedBooks.txt
+users:../src/com/company/DataBase/Users.txt
+shelves:src/com/company/shelves/ShelvesList.txt
