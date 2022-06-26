@@ -4,7 +4,11 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-
+<%
+    String orderStatus = (String) session.getAttribute("orderStatus");
+    if (orderStatus != null){
+        session.removeAttribute("orderStatus");
+%>
 <html>
 <head>
     <title>Title</title>
@@ -17,6 +21,13 @@
         }
         #successText {
             color: #88B04B;
+            font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+            font-weight: 900;
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        #failedText{
+            color: #c63f3f;
             font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
             font-weight: 900;
             font-size: 40px;
@@ -51,14 +62,29 @@
     <%@include file="navBar.jsp"%>
     </div>
     <div class="card" style="margin-top:100px;">
+        <% if (orderStatus.equals("success")){%>
         <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
             <i class="checkmark">✓</i>
         </div>
         <span id="successText">Success</span>
         <p id="receivedPurchase">We received your purchase request;<br/> we'll be in touch shortly!</p>
+
+        <%} else if(orderStatus.equals("failed")){%>
+
+        <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
+            <i class="checkmark" style="color:#c63f3f !important;">x</i>
+        </div>
+        <span id="failedText">Failed</span>
+            <p id="receivedPurchase">Sorry your request has been failed :(<br/> </p>
+        <%}%>
     </div>
 </body>
 </html>
+<%
+    }else {
+    response.sendRedirect("index.jsp");
+    };
+%>
 
 
 

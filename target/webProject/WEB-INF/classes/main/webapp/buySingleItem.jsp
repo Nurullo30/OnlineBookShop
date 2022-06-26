@@ -59,8 +59,6 @@
                     </select>
                 </div>
             </div>
-            <% request.setAttribute("pr", book);
-            %>
             <button type="submit" class="btn btn-primary">Buy</button>
         </form>
     </div>

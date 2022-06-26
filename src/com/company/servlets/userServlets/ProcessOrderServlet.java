@@ -3,6 +3,7 @@ package com.company.servlets.userServlets;
 import com.company.DTO.BookDTO;
 import com.company.Exceptions.NoBookFoundException;
 import com.company.constants.BeanConstants;
+import com.company.constants.Constants;
 import com.company.factory.ClassFactory;
 import com.company.service.BookStoreService;
 import com.company.service.userPanel.UserService;
@@ -15,12 +16,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.List;
 
 @WebServlet(value = "/processOrder")
 public class ProcessOrderServlet extends HttpServlet {
     UserService userService;
     BookStoreService bookStoreService;
+    String orderStatus;
     public ProcessOrderServlet(){
         if (userService == null){
             userService = (UserService) ClassFactory.getServices(BeanConstants.USER_SERVICE);
@@ -37,35 +40,25 @@ public class ProcessOrderServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         String productId = req.getParameter("product");
         HttpSession session = req.getSession();
-        RequestDispatcher dispatcher = null;
+        List<BookDTO> basketBooks = (List<BookDTO>) session.getAttribute("basketBooks");
+        String userID = (String) session.getAttribute("userId");
         if (productId != null){
+            BookDTO book = null;
             try {
-                BookDTO book = bookStoreService.getBookById(productId);
-                userService.saveSingleItem(book, session.getAttribute("userId").toString());
-
-                dispatcher = req.getRequestDispatcher("/orderStatus");
-                req.setAttribute("status","success");
-                dispatcher.forward(req,resp);
+                book = bookStoreService.getBookById(productId);
             } catch (NoBookFoundException e) {
                 e.printStackTrace();
             }
-        } else {
-            List<BookDTO> basketBooks = (List<BookDTO>) session.getAttribute("basketBooks");
-            if (basketBooks != null && basketBooks.size() != 0){
-                String userID = (String) session.getAttribute("userId");
-                userService.saveUserOrders(basketBooks , userID);
-                basketBooks.clear();
-                dispatcher = req.getRequestDispatcher("orderSuccess.jsp");
-                req.setAttribute("status","success");
-                dispatcher.forward(req,resp);
-            } else {
-                resp.sendRedirect("index.jsp");
-            }
-
+            orderStatus = userService.saveSingleItem(book, userID);
+        } else if (basketBooks != null && basketBooks.size() > 0){
+            orderStatus  = userService.saveUserOrders(basketBooks , userID);
+            basketBooks.clear();
         }
-
-
-
-
+        if(orderStatus.equals(Constants.FAILED)){
+            session.setAttribute("orderStatus","failed");
+        } else if (orderStatus.equals(Constants.SUCCESSFUL)){
+            session.setAttribute("orderStatus","success");
+        }
+        resp.sendRedirect("orderFinalizedStatus.jsp");
     }
 }

@@ -55,12 +55,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>orderSuccess</servlet-name>
-        <jsp-file>/orderSuccess.jsp</jsp-file>
+        <servlet-name>orderFinalizedStatus</servlet-name>
+        <jsp-file>/orderFinalizedStatus.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
-        <servlet-name>orderSuccess</servlet-name>
-        <url-pattern>/orderSuccess</url-pattern>
+        <servlet-name>orderFinalizedStatus</servlet-name>
+        <url-pattern>/orderFinalizedStatus</url-pattern>
     </servlet-mapping>
 
     <servlet>

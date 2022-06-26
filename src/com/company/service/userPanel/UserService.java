@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface UserService {
 
-    void saveUserOrders(List<BookDTO> orders, String userID);
+    String saveUserOrders(List<BookDTO> orders, String userID);
 
-    void saveSingleItem(BookDTO bookDTO, String userId);
+    String saveSingleItem(BookDTO bookDTO, String userId);
 
     UserDTO getUserProfile(String userId) throws UserNotFoundException;
 

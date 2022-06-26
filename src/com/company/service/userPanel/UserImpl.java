@@ -13,6 +13,7 @@ import com.company.DAO.UserDAO;
 import com.company.factory.ClassFactory;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -61,14 +62,24 @@ public class UserImpl  implements UserService {
 
 
     @Override
-    public void saveUserOrders(List<BookDTO> orders, String userID) {
-        // deduct book
-        // top up balance
-        bookDAO.saveBooks(orders, userID);
+    public String saveUserOrders(List<BookDTO> orders, String userID) {
+        // add feature : deduct book
+        // add feature : top up balance
+        try {
+            bookDAO.saveBooks(orders, userID);
+        } catch (SQLException e) {
+            return Constants.FAILED;
+        }
+        return Constants.SUCCESSFUL;
     }
 
-    public void saveSingleItem(BookDTO bookDTO, String userId){
-        bookDAO.saveSingleBook(bookDTO, userId);
+    public String saveSingleItem(BookDTO bookDTO, String userId){
+        try {
+            bookDAO.saveSingleBook(bookDTO, userId);
+        } catch (SQLException e) {
+            return Constants.FAILED;
+        }
+        return Constants.SUCCESSFUL;
     }
 
 

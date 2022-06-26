@@ -255,38 +255,29 @@ public class BookRepository implements BookDAO{
         fileWriter.close();
     }
 
-    public void saveBooks(List<BookDTO> bookList, String userID)  {
-        try {
+    public void saveBooks(List<BookDTO> bookList, String userID) throws SQLException {
             Connection conn = ClassFactory.connectToDB();
             for (BookDTO order: bookList) {
                 String sql = "insert into orders (userid,bookid) values (?,?)";
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ps.setString(1, userID);
                 ps.setString(2, order.getBookId());
-                ResultSet rs = ps.executeQuery();
+                ps.executeUpdate();
             }
             conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
 
 
     @Override
-    public void saveSingleBook(BookDTO book, String userID)  {
-        try {
-            Connection conn = ClassFactory.connectToDB();
-                String sql = "insert into orders (userid,bookid) values (?,?)";
-                PreparedStatement ps = conn.prepareStatement(sql);
-                ps.setString(1, userID);
-                ps.setString(2, book.getBookId());
-                ResultSet rs = ps.executeQuery();
-
-            conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void saveSingleBook(BookDTO book, String userID) throws SQLException {
+        Connection conn = ClassFactory.connectToDB();
+        String sql = "insert into orders (userid,bookid) values (?,?)";
+        PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, userID);
+            ps.setString(2, book.getBookId());
+            ps.executeUpdate();
+        conn.close();
     }
 
     @Override

@@ -7,6 +7,7 @@ import com.company.shelves.Shelves;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
@@ -36,9 +37,9 @@ public interface BookDAO {
 
     void reloadShelveList(Map<String, String> filePath,List<Shelves> shelvesList) throws IOException;
 
-    void saveBooks(List<BookDTO> bookList, String userID);
+    void saveBooks(List<BookDTO> bookList, String userID) throws SQLException;
 
-    void saveSingleBook(BookDTO book, String userId);
+    void saveSingleBook(BookDTO book, String userId) throws SQLException;
 
     void saveUserPurchase(String userID, String bookId , String path);
 
