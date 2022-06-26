@@ -25,13 +25,12 @@ public class BuySingleItemServlet extends HttpServlet {
         }
     }
 
-
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         String productId = (String) req.getParameter("product");
         try {
             BookDTO book = bookStoreService.getBookById(productId);
             book.setAmount(1);
-            RequestDispatcher dispatcher = req.getRequestDispatcher("buySingleItem.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("checkout.jsp");
             req.setAttribute("book", book);
             dispatcher.forward(req, resp);
         } catch (NoBookFoundException e) {

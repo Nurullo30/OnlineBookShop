@@ -104,7 +104,6 @@
                             <h3 class="card-title"><%= book.getName()%></h3>
                             <p>Author: <%= book.getAuthor() %></p>
                             <p>Genre: <%= book.getGenre() %> </p>
-                            <p>Amount: <%= book.getAmount() %> </p>
                             <p>Price: <%= book.getPrice()%> </p>
                             <a href="myBasket?product=<%=book.getBookId()%>" class="btn btn-dark"><%=UserConstant.ADD_TO_BASKET%></a>
                             <a href="buySingleItem?product=<%=book.getBookId()%>" class="btn btn-primary"><%=UserConstant.BUY_BOOK%></a>

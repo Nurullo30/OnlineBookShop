@@ -14,7 +14,14 @@
 <%@include file="navBar.jsp"%>
 <div id="checkout-form">
         <%
-           List<BookDTO> bookDTOS = (List<BookDTO>)session.getAttribute("basketBooks");
+            BookDTO singleBook = (BookDTO) request.getAttribute("book");
+            List<BookDTO> bookDTOS = (List<BookDTO>)session.getAttribute("basketBooks");
+
+            if (singleBook != null){
+                bookDTOS = new ArrayList<>();
+                bookDTOS.add(singleBook);
+                session.setAttribute("basketBooks", bookDTOS);
+            }
         %>
         <ul class="list-group">
             <% int count = 0;%>

@@ -25,41 +25,6 @@ public class BasketServlet extends HttpServlet {
         }
     }
 
-//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-//        String productId = req.getParameter("product");
-//        HttpSession session = req.getSession();
-//        Map<String, Integer> cartList = (HashMap<String, Integer>) session.getAttribute("cartList");
-//        boolean exist= false;
-//        if (cartList == null){
-//            cartList = new HashMap<>();
-//            cartList.put(productId, 1);
-//            session.setAttribute("cartList", cartList);
-//            resp.sendRedirect("seeAllBooks?panel=seeAllBooks&page=1");
-//        } else if (cartList.containsKey(productId)){
-//           exist = true;
-//            resp.sendRedirect("basket.jsp");
-//        } else{
-//            cartList.put(productId, 1);
-//            resp.sendRedirect("seeAllBooks?panel=seeAllBooks&page=1");
-//        }
-//        if (!exist){
-//            List<BookDTO> bookDTOS = new ArrayList<>();
-//            cartList.entrySet().stream().forEach(v -> {
-//                BookDTO bookDTO = new BookDTO();
-//                bookDTO.setBookId(v.getKey());
-//                bookDTO.setAmount(v.getValue());
-//                bookDTOS.add(bookDTO);
-//            });
-//
-//            try {
-//                List<BookDTO> basketBooks = bookStoreService.getBooks(bookDTOS);
-//                session.setAttribute("basketBooks", basketBooks);
-//            } catch (NoBookFoundException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException{
         String productId = req.getParameter("product");
         HttpSession session = req.getSession();

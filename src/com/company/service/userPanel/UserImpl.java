@@ -73,14 +73,6 @@ public class UserImpl  implements UserService {
         return Constants.SUCCESSFUL;
     }
 
-    public String saveSingleItem(BookDTO bookDTO, String userId){
-        try {
-            bookDAO.saveSingleBook(bookDTO, userId);
-        } catch (SQLException e) {
-            return Constants.FAILED;
-        }
-        return Constants.SUCCESSFUL;
-    }
 
 
 }

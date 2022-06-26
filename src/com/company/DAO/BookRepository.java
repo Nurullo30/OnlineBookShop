@@ -268,30 +268,4 @@ public class BookRepository implements BookDAO{
     }
 
 
-
-    @Override
-    public void saveSingleBook(BookDTO book, String userID) throws SQLException {
-        Connection conn = ClassFactory.connectToDB();
-        String sql = "insert into orders (userid,bookid) values (?,?)";
-        PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, userID);
-            ps.setString(2, book.getBookId());
-            ps.executeUpdate();
-        conn.close();
-    }
-
-    @Override
-    public void saveUserPurchase(String userID, String bookId, String path) {
-        FileWriter fileWriter = null;
-        try {
-            fileWriter = new FileWriter(new File(path) ,true);
-            fileWriter.write( userID + ":" + bookId + "\n");
-            fileWriter.flush();
-            fileWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
 }

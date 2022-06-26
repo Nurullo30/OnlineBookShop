@@ -39,9 +39,5 @@ public interface BookDAO {
 
     void saveBooks(List<BookDTO> bookList, String userID) throws SQLException;
 
-    void saveSingleBook(BookDTO book, String userId) throws SQLException;
-
-    void saveUserPurchase(String userID, String bookId , String path);
-
     void topUpBalance(String filePath, String bookPrice);
 }

@@ -10,8 +10,6 @@ public interface UserService {
 
     String saveUserOrders(List<BookDTO> orders, String userID);
 
-    String saveSingleItem(BookDTO bookDTO, String userId);
-
     UserDTO getUserProfile(String userId) throws UserNotFoundException;
 
     String updateUserCredentials(UserDTO newUserData);

@@ -38,27 +38,17 @@ public class ProcessOrderServlet extends HttpServlet {
 
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-        String productId = req.getParameter("product");
         HttpSession session = req.getSession();
         List<BookDTO> basketBooks = (List<BookDTO>) session.getAttribute("basketBooks");
         String userID = (String) session.getAttribute("userId");
-        if (productId != null){
-            BookDTO book = null;
-            try {
-                book = bookStoreService.getBookById(productId);
-            } catch (NoBookFoundException e) {
-                e.printStackTrace();
-            }
-            orderStatus = userService.saveSingleItem(book, userID);
-        } else if (basketBooks != null && basketBooks.size() > 0){
+
+        if (basketBooks != null && basketBooks.size() > 0){
             orderStatus  = userService.saveUserOrders(basketBooks , userID);
             basketBooks.clear();
+            session.setAttribute("orderStatus",orderStatus.equals(Constants.SUCCESSFUL) ? "success" : "failed");
+            resp.sendRedirect("orderFinalizedStatus.jsp");
+        } else {
+            resp.sendRedirect("index.jsp");
         }
-        if(orderStatus.equals(Constants.FAILED)){
-            session.setAttribute("orderStatus","failed");
-        } else if (orderStatus.equals(Constants.SUCCESSFUL)){
-            session.setAttribute("orderStatus","success");
-        }
-        resp.sendRedirect("orderFinalizedStatus.jsp");
     }
 }
